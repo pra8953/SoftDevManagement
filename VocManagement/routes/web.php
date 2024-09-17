@@ -6,10 +6,11 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\Admin\AdminController;
 
+
+
 Route::get('/', function () {
     return view('welcome');
 });
-
 
 
 Route::middleware('auth')->group(function () {
@@ -19,6 +20,9 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+
+
 
 
 Route::middleware(['auth','userMiddleware'])->group(function(){
