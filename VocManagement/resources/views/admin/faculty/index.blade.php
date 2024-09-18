@@ -22,6 +22,8 @@
                         <th>ID</th>
                         <th>Name</th>
                         <th>Email</th>
+                        <th>Phone</th>
+                        <th>Department</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -31,12 +33,15 @@
                             <td>{{ $faculty->id }}</td>
                             <td>{{ $faculty->name }}</td>
                             <td>{{ $faculty->email }}</td>
+                            <td>{{ $faculty->phone }}</td>
+                            <td>{{ $faculty->department }}</td>
                             <td>
+                                <a href="{{ route('admin.faculty.show', $faculty->id) }}" class="btn btn-info btn-sm">View</a>
                                 <a href="{{ route('admin.faculty.edit', $faculty->id) }}" class="btn btn-warning btn-sm">Edit</a>
-                                <form action="{{ route('admin.faculty.destroy', $faculty->id) }}" method="POST" style="display:inline-block;">
+                                <form action="{{ route('admin.faculty.destroy', $faculty->id) }}" method="POST" style="display:inline;">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this faculty?')">Delete</button>
                                 </form>
                             </td>
                         </tr>

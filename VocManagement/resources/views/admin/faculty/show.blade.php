@@ -1,11 +1,14 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
 @section('content')
 <div class="container">
-    <h2>Faculty Details</h2>
+    <h1>Faculty Details</h1>
+
     <p><strong>Name:</strong> {{ $faculty->name }}</p>
     <p><strong>Email:</strong> {{ $faculty->email }}</p>
+    <p><strong>Phone:</strong> {{ $faculty->phone }}</p>
     <p><strong>Department:</strong> {{ $faculty->department }}</p>
-    <a href="{{ route('admin.faculty.index') }}" class="btn btn-primary">Back to List</a>
+
+    <a href="{{ route('admin.faculty.edit', $faculty->id) }}" class="btn btn-warning">Edit</a>
 </div>
 @endsection
