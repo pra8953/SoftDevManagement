@@ -5,7 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-use App\Models\Faculty;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class FacultyController extends Controller
 {
@@ -14,7 +15,7 @@ class FacultyController extends Controller
      */
     public function index()
     {
-        $faculties = Faculty::all();
+        $faculties = User::where('usertype', 'user')->get();
         return view('admin.faculty.index', compact('faculties'));
     }
 
@@ -33,14 +34,22 @@ class FacultyController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'email' => 'required|email|max:255|unique:faculties',
+            'email' => 'required|email|max:255|unique:users',
+            'phone' => 'required|string|max:15',
             'department' => 'required|string|max:255',
+            'password' => 'required|string|min:8|confirmed',
         ]);
 
-        // Create a new faculty record
-        Faculty::create($request->all());
+        // Store the faculty as a user
+        User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'department' => $request->department,
+            'password' => Hash::make($request->password),
+            'usertype' => 'user', // Faculty usertype set as 'user'
+        ]);
 
-        // Redirect to the index page with a success message
         return redirect()->route('admin.faculty.index')->with('success', 'Faculty added successfully!');
     }
 
@@ -49,7 +58,7 @@ class FacultyController extends Controller
      */
     public function show(string $id)
     {
-        $faculty = Faculty::findOrFail($id);
+        $faculty = User::findOrFail($id);
         return view('admin.faculty.show', compact('faculty'));
     }
 
@@ -58,7 +67,7 @@ class FacultyController extends Controller
      */
     public function edit(string $id)
     {
-        $faculty = Faculty::findOrFail($id);
+        $faculty = User::findOrFail($id);
         return view('admin.faculty.edit', compact('faculty'));
     }
 
@@ -67,16 +76,24 @@ class FacultyController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        $faculty = User::findOrFail($id);
+
         $request->validate([
             'name' => 'required|string|max:255',
-            'email' => 'required|email|max:255',
+            'email' => 'required|email|max:255|unique:users,email,' . $id,
+            'phone' => 'required|string|max:15',
             'department' => 'required|string|max:255',
         ]);
 
-        $faculty = Faculty::findOrFail($id);
-        $faculty->update($request->all());
+        // Update faculty details
+        $faculty->update([
+            'name' => $request->name,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'department' => $request->department,
+        ]);
 
-        return redirect()->route('admin.faculty.index')->with('success', 'Faculty updated successfully');
+        return redirect()->route('admin.faculty.index')->with('success', 'Faculty updated successfully!');
     }
 
     /**
@@ -84,9 +101,9 @@ class FacultyController extends Controller
      */
     public function destroy(string $id)
     {
-        $faculty = Faculty::findOrFail($id);
+        $faculty = User::findOrFail($id);
         $faculty->delete();
 
-        return redirect()->route('faculty.index')->with('success', 'Faculty deleted successfully!');
+        return redirect()->route('admin.faculty.index')->with('success', 'Faculty deleted successfully!');
     }
 }
