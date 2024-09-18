@@ -36,6 +36,7 @@ Route::middleware(['auth','adminMiddleware'])->group(function(){
     Route::get('/admin/dashboard',[AdminController::class,'index'])->name('admin.dashboard');
     Route::get('/admin/faculty', [FacultyController::class, 'index'])->name('admin.faculty.index');
     Route::get('/admin/faculty/create', [FacultyController::class, 'create'])->name('admin.faculty.create');
+    Route::post('/admin/faculty', [FacultyController::class, 'store'])->name('admin.faculty.store');
     Route::get('/admin/faculty/{id}', [FacultyController::class, 'show'])->name('admin.faculty.show');
     Route::get('/admin/faculty/{id}/edit', [FacultyController::class, 'edit'])->name('admin.faculty.edit');
     Route::put('/admin/faculty/{id}', [FacultyController::class, 'update'])->name('admin.faculty.update');
