@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\FacultyController;
+use App\Http\Controllers\DashboardController;
+
 
 
 Route::get('/', function () {
@@ -39,3 +41,9 @@ Route::middleware(['auth','adminMiddleware'])->group(function(){
     Route::put('/admin/faculty/{id}', [FacultyController::class, 'update'])->name('admin.faculty.update');
     Route::delete('/admin/faculty/{id}', [FacultyController::class, 'destroy'])->name('admin.faculty.destroy');
 });
+
+
+
+Route::get('/dashboard', [DashboardController::class, 'showDashboard'])->middleware('auth')->name('dashboard');
+
+
