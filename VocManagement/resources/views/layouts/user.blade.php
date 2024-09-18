@@ -17,11 +17,11 @@
     </head>
     <body class="sb-nav-fixed">
 
-      @include('UserLayout.partial.navbar')
+      @include('layouts.Partial.navbar')
 
       <div id="layoutSidenav">
             <div id="layoutSidenav_nav">
-              @include('UserLayout.partial.sidebar')
+              @include('layouts.Partial.sidebar')
             </div>
 
 
@@ -32,7 +32,7 @@
                     </div>
                 </main>
 
-              @include('UserLayout.partial.footer')
+              @include('layouts.Partial.footer')
 
                 
             </div>

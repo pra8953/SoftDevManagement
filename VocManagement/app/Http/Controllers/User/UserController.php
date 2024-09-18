@@ -5,6 +5,10 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+
+
 class UserController extends Controller
 {
     /**
@@ -12,7 +16,11 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('dashboard');
+        // Get the authenticated user
+        $user = Auth::user();
+
+        // Pass the user data to the view
+        return view('user.dashboard', compact('user'));
     }
 
     /**
