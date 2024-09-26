@@ -37,3 +37,14 @@ Route::middleware(['auth','adminMiddleware'])->group(function(){
     Route::put('/admin/faculty/{id}', [FacultyController::class, 'update'])->name('admin.faculty.update');
     Route::delete('/admin/faculty/{id}', [FacultyController::class, 'destroy'])->name('admin.faculty.destroy');
 });
+
+
+
+
+Route::middleware(['auth', 'role:admin'])->namespace('Admin')->group(function () {
+    Route::resource('admin/events', 'EventsController');
+});
+
+Route::middleware(['auth', 'role:user'])->namespace('User')->group(function () {
+    Route::resource('user/events', 'EventsController');
+});
