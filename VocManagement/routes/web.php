@@ -2,10 +2,11 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-
 use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\FacultyController;
+use App\Http\Controllers\Admin\EventController;
+
 
 
 
@@ -41,10 +42,24 @@ Route::middleware(['auth','adminMiddleware'])->group(function(){
 
 
 
-Route::middleware(['auth', 'role:admin'])->namespace('Admin')->group(function () {
-    Route::resource('admin/events', 'EventsController');
+
+
+
+Route::middleware(['auth','adminMiddleware'])->group(function(){
+
+    Route::get('/admin/event', [EventController::class, 'index'])->name('admin.event.index');
+    Route::get('/admin/event/create', [EventController::class, 'create'])->name('admin.event.create');
+    Route::post('/admin/event', [EventController::class, 'store'])->name('event.store');
+   
+    Route::get('/admin/event/{event}/edit', [EventController::class, 'edit'])->name('admin.event.edit');
+    
+    // Route to update the existing event
+    Route::put('/admin/event/{event}', [EventController::class, 'update'])->name('admin.event.update');
+  
+     Route::delete('/admin/event/{event}', [EventController::class, 'destroy'])->name('admin.event.destroy');
+
 });
 
-Route::middleware(['auth', 'role:user'])->namespace('User')->group(function () {
-    Route::resource('user/events', 'EventsController');
-});
+
+
+
