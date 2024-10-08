@@ -11,7 +11,7 @@
 
     <div class="card mb-4">
         <div class="card-header">
-            <i class="fas fa-table me-1"></i>
+            <i class="fas fa-book me-1"></i>
             Study Materials List
             <a href="{{ route('admin.study_materials.create') }}" class="btn btn-primary btn-sm float-end">Add New Study Material</a>
         </div>
