@@ -42,7 +42,7 @@
                             </a>
                             <div class="collapse" id="collapseQuiz" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="{{ url('admin/event') }}"> Events/Announcement</a>
+                                    <a class="nav-link" href="#"> Events/Announcement </a>
                                     <a class="nav-link" href="{{ url('admin/quiz') }}">Issue Certificate</a>
 
                                     <a class="nav-link" href="{{ url('admin/quiz') }}">Atendence Participates</a>

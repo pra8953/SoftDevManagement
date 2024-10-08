@@ -7,27 +7,10 @@
                 Dashboard
             </a>
 
-
-                            
-                            <div class="sb-sidenav-menu-heading"> Study Mast</div>
-                            <a class="nav-link" href="{{ url('user/Events_News') }}">
-                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                                Upload PYQ
-                            </a>
-                            <a class="nav-link" href="{{ url('#') }}">
-                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                                Study Materials
-                            </a>
-                            <a class="nav-link" href="{{ url('#') }}">
-                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                                RoadMaps
-                            </a>
-
             <a class="nav-link" href="{{ url('admin/faculty') }}">
                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                 Faculty
             </a>
-
 
 
             <div class="sb-sidenav-menu-heading"> Study Mast</div>
