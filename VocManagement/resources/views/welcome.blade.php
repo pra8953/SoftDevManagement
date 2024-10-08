@@ -38,16 +38,20 @@
             .LOgin_in_in{
                 
             }
+            .pages_{
+                background-color:rgba(255,255,255,0.9);
+                /* background-image:linear-gradient(to left,rgba(255,255,0,0.8),blue,yellow); */
+            }
         </style>
 </head>
 <body style=" background-image: url('/assets/image/login.jpg');  background-size: cover; height:100vh;">
     
     <main>
-        <section class="login">
+        <section class="login  ">
             <div class=" login_in  ">
                 <div class="LOgin_in_in ">
                    
-                    <div class=" bg-white rounded-3  shadow-lg justify-center items-center">
+                    <div class=" pages_ rounded-3  shadow-lg justify-center items-center">
                         <div class="d-flex justify-content-center ">
                             <img class="m-4" style="height:100px" src="/assets/image/Ramanujan_College_Logo.jpg" alt="">
                         </div>
